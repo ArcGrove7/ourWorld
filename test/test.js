@@ -11,7 +11,7 @@ const os = require('os');
 const path = require('path');
 const { execFileSync } = require('child_process');
 
-const root = path.resolve(__dirname, '..');
+const root = path.resolve(__dirname, '..', 'lib');
 const cli = require(path.join(root, 'cli'));
 const budget = require(path.join(root, 'budget'));
 const jsonl = require(path.join(root, 'jsonl'));
@@ -485,8 +485,8 @@ function runNode(src, { env = {}, argv = [] } = {}) {
   });
   ok('工具包沒有任何外部相依（只用 Node 內建模組）', () => {
     const builtin = new Set(require('module').builtinModules);
-    for (const f of fs.readdirSync(root).filter(n => n.endsWith('.js'))) {
-      const src = fs.readFileSync(path.join(root, f), 'utf8');
+    for (const f of fs.readdirSync(path.join(root, '.')).filter(n => n.endsWith('.js'))) {
+      const src = fs.readFileSync(path.join(root, '.', f), 'utf8');
       for (const m of src.matchAll(/require\(['"]([^'"]+)['"]\)/g)) {
         const dep = m[1];
         if (dep.startsWith('.')) continue;

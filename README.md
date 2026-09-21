@@ -3,7 +3,7 @@
 寫給一種很具體的情境：**你要寫一批命令列工具去打同一個 API，而那個 API 有每小時請求上限，
 打爆了會被擋、打錯了會改到真實狀態。** 這個資料夾把那種工具每次都要重寫的事抽出來，加上自動遊玩一款文字遊戲時真正要守的規矩。
 
-**拿到一款新的文字遊戲要從哪裡開始，看 [`PLAYBOOK.md`](PLAYBOOK.md)**：八個步驟、每一步用哪一支。
+**拿到一款新的文字遊戲要從哪裡開始，看 [`PLAYBOOK.md`](PLAYBOOK.md)**：八個步驟、每一步用哪一支。English: [`README.en.md`](README.en.md).
 
 沒有任何外部相依（只用 Node 內建模組），一支一支獨立，複製整個資料夾就能用。
 授權 MIT，見 `LICENSE`。
@@ -67,15 +67,19 @@ runMain(async () => {
 
 ## 測試
 
-```
-node test/test.js
-```
+- 獨立倉庫（ourWorld 的配置）：`node test/test.js`
+- 在 mydoujinHelper 裡：`node tools/harness/test-lib.js`（同一套測試，多兩道只有這個倉庫才有的閘門）
 
-57 項，不連線、不碰任何真實 API。上面四條規矩每一條都有對應的測試守著。
+不連線、不碰任何真實 API。上面四條規矩每一條都有對應的測試守著。
 
 ## 拿去別的專案用
 
 整個資料夾複製過去就行，沒有相依要裝。預設的環境變數字首是 `MD_TOKEN`，
 要換就改 `token.js` 的 `envNameFor()` 一個地方。
 
-這個倉庫是從 [mydoujinHelper](https://github.com/ArcGrove7/mydoujinHelper) 的 `tools/lib/` 整份複製出來的；那邊改了就整份再複製過來，不要兩邊各改各的。
+## 程式住在哪裡
+
+模組在私有的 [mydoujinHelper](https://github.com/ArcGrove7/mydoujinHelper) 倉庫 `tools/lib/` 裡開發，
+用 `node tools/sync-ourworld.js <ourWorld 目錄>` 整份鏡射到 [ourWorld](https://github.com/ArcGrove7/ourWorld)
+（人 2026-09-21 拍板的配置：模組放 `lib/`、說明檔放根目錄、測試放 `test/`）。
+**ourWorld 不手改**——改 `tools/lib/` 再跑同步。英文說明在 [`README.en.md`](README.en.md)，給其他語言的 AI 讀；兩份有出入以中文版為準。

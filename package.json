@@ -5,10 +5,11 @@
   "license": "MIT",
   "author": "ArcGrove",
   "type": "commonjs",
-  "main": "index.js",
+  "main": "lib/index.js",
   "files": [
-    "*.js",
+    "lib/*.js",
     "README.md",
+    "README.en.md",
     "PLAYBOOK.md",
     "LICENSE"
   ],
@@ -17,17 +18,17 @@
   },
   "dependencies": {},
   "exports": {
-    ".": "./index.js",
-    "./cli": "./cli.js",
-    "./budget": "./budget.js",
-    "./http": "./http.js",
-    "./token": "./token.js",
-    "./jsonl": "./jsonl.js",
-    "./tw-time": "./tw-time.js",
-    "./cooldown": "./cooldown.js",
-    "./decide": "./decide.js",
-    "./tally": "./tally.js",
-    "./derived": "./derived.js"
+    ".": "./lib/index.js",
+    "./cli": "./lib/cli.js",
+    "./budget": "./lib/budget.js",
+    "./http": "./lib/http.js",
+    "./token": "./lib/token.js",
+    "./jsonl": "./lib/jsonl.js",
+    "./tw-time": "./lib/tw-time.js",
+    "./cooldown": "./lib/cooldown.js",
+    "./decide": "./lib/decide.js",
+    "./tally": "./lib/tally.js",
+    "./derived": "./lib/derived.js"
   },
   "keywords": [
     "cli",
