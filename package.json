@@ -1,0 +1,48 @@
+{
+  "name": "@arcgrove/polite-cli",
+  "version": "0.2.0",
+  "description": "Zero-dependency Node modules for CLI tools that play a rate-limited text game through its API: argv parsing with typo detection, a rolling-hour request budget, an HTTP client that never auto-retries writes, env-only token handling, JSONL records, cooldown scheduling from the action response, an expected-value option picker with safety gates, raw-total tallies, and derived-table gates (shrink guard, source stamps). PLAYBOOK.md is the step-by-step analysis guide for a new game.",
+  "license": "MIT",
+  "author": "ArcGrove",
+  "type": "commonjs",
+  "main": "index.js",
+  "files": [
+    "*.js",
+    "README.md",
+    "PLAYBOOK.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {},
+  "exports": {
+    ".": "./index.js",
+    "./cli": "./cli.js",
+    "./budget": "./budget.js",
+    "./http": "./http.js",
+    "./token": "./token.js",
+    "./jsonl": "./jsonl.js",
+    "./tw-time": "./tw-time.js",
+    "./cooldown": "./cooldown.js",
+    "./decide": "./decide.js",
+    "./tally": "./tally.js",
+    "./derived": "./derived.js"
+  },
+  "keywords": [
+    "cli",
+    "argv",
+    "rate-limit",
+    "http",
+    "retry",
+    "jsonl",
+    "zero-dependency",
+    "text-game",
+    "automation",
+    "expected-value",
+    "safety-gate"
+  ],
+  "scripts": {
+    "test": "node test/test.js"
+  }
+}
