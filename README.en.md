@@ -26,7 +26,7 @@ runMain(async () => {
 });
 ```
 
-## The ten modules
+## The eleven modules
 
 | Module | What it does | Depends on |
 | --- | --- | --- |
@@ -39,9 +39,10 @@ runMain(async () => {
 | `cooldown.js` | **Computes when the next action is allowed from the action response itself, instead of polling a status endpoint** (that extra call doubles your budget use). Returns `fallbackMs` with `observed: false` when nothing usable is in the response; it does not fill in a number on its own | — |
 | `decide.js` | Picks an event option: highest expected value, not the safest, but only after the safety gates. Six rules, each one paid for by a real loss (death rate follows how strong *you* are; untried + a name that says "fight" = skip; an unmeasured option's EV is `null`, not 0, …) | — |
 | `tally.js` | Turns "what was picked, what happened" records into the table `decide.js` consumes. **Stores raw totals, never averages**; `merge()` takes the field-wise maximum so evidence only grows | — |
+| `account.js` | Account-name normalisation: strips the `-YYYYMMDD-HHMM[-note]` suffix a log file gets when it is archived. **One account appearing under several names** is a failure with no symptom — de-duplication stops working and one account's history is split into fragments | — |
 | `derived.js` | Two gates for generated tables: `shrinkGate()` refuses a rebuild that would shrink the evidence (incomplete source records), `stamp()` / `verify()` catch "source changed, table not regenerated" | — |
 
-The only dependency edge is `http` → `budget`, `token`. The other eight are independent; take a single file if that is all you need.
+The only dependency edge is `http` → `budget`, `token`. The other nine are independent; take a single file if that is all you need.
 The first six are the "rate-limited API" half, the last four the "auto-play" half; a project that only needs the first half never has to touch the second.
 
 ## Four rules that are not obvious, and each of which cost something once

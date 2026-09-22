@@ -476,10 +476,27 @@ function runNode(src, { env = {}, argv = [] } = {}) {
     });
   }
 
+  // ───────────────────────── account
+  {
+    const { baseAccount } = require(path.join(root, 'account'));
+    ok('account：去掉封存後綴，帶說明文字的那種也要去掉', () => {
+      assert.equal(baseAccount('arcgrove7'), 'arcgrove7');
+      assert.equal(baseAccount('arcgrove7-20260922-1553'), 'arcgrove7');
+      // 這一種是四支工具原本都漏掉的：後綴後面還接了一段人寫的說明
+      assert.equal(baseAccount('jun184-20260922-2021-死亡轉生前'), 'jun184');
+    });
+    ok('account：不像封存後綴的名字一個字都不動，空值回空字串', () => {
+      assert.equal(baseAccount('20260922-赤紅解鎖酬載'), '20260922-赤紅解鎖酬載');
+      assert.equal(baseAccount('season0320-2026-09-22'), 'season0320-2026-09-22');
+      assert.equal(baseAccount(null), '');
+      assert.equal(baseAccount(undefined), '');
+    });
+  }
+
   // ───────────────────────── 整包
   ok('index：總入口把每一支都掛出來', () => {
     const lib = require(path.join(root, '.'));
-    for (const k of ['cli', 'budget', 'jsonl', 'client', 'twISO', 'requireToken', 'runMain', 'redact']) {
+    for (const k of ['cli', 'budget', 'jsonl', 'client', 'twISO', 'requireToken', 'runMain', 'redact', 'baseAccount']) {
       assert.ok(lib[k], `少了 ${k}`);
     }
   });
